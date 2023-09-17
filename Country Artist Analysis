@@ -1,0 +1,37 @@
+#This project utilizes the following country artist data: 
+
+#Create table about multiple country artist and what songs they sing here:
+
+CREATE TABLE artist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    hometown TEXT);
+    
+INSERT INTO artist (fullname, hometown) VALUES ("Morgan Wallen", "Sneedville");
+INSERT INTO artist (fullname, hometown) VALUES ("Zach Bryan", "Okinawa");
+INSERT INTO artist (fullname, hometown) VALUES ("Luke Bryan", "Leesburg");
+INSERT INTO artist (fullname, hometown) VALUES ("Miranda Lambert", "Longview");
+INSERT INTO artist (fullname, hometown) VALUES ("Thomas Rhett", "Valdosta");
+
+CREATE table songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+    
+INSERT INTO songs (person_id, name) VALUES (1, "Last Night");
+INSERT INTO songs (person_id, name) VALUES (1, "You Proof");
+INSERT INTO songs (person_id, name) VALUES (2, "I Remember Everything");
+INSERT INTO songs (person_id, name) VALUES (2, "Something in the Orange");
+INSERT INTO songs (person_id, name) VALUES (3, "Country Girl");
+INSERT INTO songs (person_id, name) VALUES (3, "Play it Again");
+INSERT INTO songs (person_id, name) VALUES (3, "That's My Kind Of Night");
+INSERT INTO songs (person_id, name) VALUES (4, "Bluebird");
+INSERT INTO songs (person_id, name) VALUES (4, "Mama's Broken Heart");
+INSERT INTO songs (person_id, name) VALUES (5, "Die A Happy Man");
+
+#What songs did the artist write? Where are the artist from?
+
+SELECT a.fullname, a.hometown, s.name AS song
+FROM artist AS a
+JOIN songs AS s
+ON a.id=s.person_id;
