@@ -1,0 +1,29 @@
+# This project reveals insights about TV and Movie content hosted on Netflix. 
+
+# The project was written using the PostgreSQL dialect and utilized data from the following two Netflix datasets:
+
+CREATE TABLE netflix_titles_info
+    ("show_id" varchar(5), "type" varchar(7), "title" varchar(58), "country" varchar(74), "date_added" timestamp, "release_year" int, "rating" varchar(5), "duration" varchar(9), "listed_in" varchar(74))
+;
+
+CREATE TABLE netflix_people
+    ("show_id" varchar(5), "director" varchar(54), "cast" varchar(532))
+;
+    
+INSERT INTO netflix_titles_info
+    ("show_id", "type", "title", "country", "date_added", "release_year", "rating", "duration", "listed_in")
+VALUES
+    ('s1', 'Movie', 'Dick Johnson Is Dead', 'United States', '2021-09-25 00:00:00', 2020, 'PG-13', '90 min', 'Documentaries'),
+    ('s2', 'TV Show', 'Blood & Water', 'South Africa', '2021-09-24 00:00:00', 2021, 'TV-MA', '2 Seasons', 'International TV Shows | TV Dramas | TV Mysteries'),
+    ('s3', 'TV Show', 'Ganglands', NULL, '2021-09-24 00:00:00', 2021, 'TV-MA', '1 Season', 'Crime TV Shows | International TV Shows | TV Action & Adventure'),
+    ('s4', 'TV Show', 'Jailbirds New Orleans', NULL, '2021-09-24 00:00:00', 2021, 'TV-MA', '1 Season', 'Docuseries | Reality TV'),
+    ('s5', 'TV Show', 'Kota Factory', 'India', '2021-09-24 00:00:00', 2021, 'TV-MA', '2 Seasons', 'International TV Shows | Romantic TV Shows | TV Comedies'),
+    ('s6', 'TV Show', 'Midnight Mass', NULL, '2021-09-24 00:00:00', 2021, 'TV-MA', '1 Season', 'TV Dramas | TV Horror | TV Mysteries'),
+    ('s7', 'Movie', 'My Little Pony: A New Generation', NULL, '2021-09-24 00:00:00', 2021, 'PG', '91 min', 'Children & Family Movies'),
+    ('s8', 'Movie', 'Sankofa', 'United States | Ghana | Burkina Faso | United Kingdom | Germany | Ethiopia', '2021-09-24 00:00:00', 1993, 'TV-MA', '125 min', 'Dramas | Independent Movies | International Movies'),
+    ('s9', 'TV Show', 'The Great British Baking Show', 'United Kingdom', '2021-09-24 00:00:00', 2021, 'TV-14', '9 Seasons', 'British TV Shows | Reality TV'),
+    ('s10', 'Movie', 'The Starling', 'United States', '2021-09-24 00:00:00', 2021, 'PG-13', '104 min', 'Comedies | Dramas'),
+    ('s11', 'TV Show', 'Vendetta: Truth  Lies and The Mafia', NULL, '2021-09-24 00:00:00', 2021, 'TV-MA', '1 Season', 'Crime TV Shows | Docuseries | International TV Shows'),
+    ('s12', 'TV Show', 'Bangkok Breaking', NULL, '2021-09-23 00:00:00', 2021, 'TV-MA', '1 Season', 'Crime TV Shows | International TV Shows | TV Action & Adventure'),
+    ('s13', 'Movie', 'Je Suis Karl', 'Germany | Czech Republic', '2021-09-23 00:00:00', 2021, 'TV-MA', '127 min', 'Dramas | International Movies'),
+    ('s14', 'Movie', 'Confessions of an Invisible Girl', NULL, '2021-09-22 00:00:00', 2021, 'TV-PG', '91 min', 'Children & Family Movies | Comedies'),
