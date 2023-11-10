@@ -1,0 +1,71 @@
+#In this SQL, I'm querying a database with multiple tables in it to quantify statistics about artists, albums, agents, customers, sales, and more.
+
+
+#1. Show customers (their full names, customer ID, and country) who are not in the United Kingdom or Brazil.
+SELECT FirstName, LastName, CustomerId, Country 
+FROM chinook.customers 
+WHERE Country != "United Kingdom"
+AND Country != "Brazil";
+
+#2. How many customers are from the USA?
+SELECT COUNT(*)
+FROM chinook.customers
+WHERE Country = "USA";
+
+#3. Find all the albums from the artist Guns N’ Roses. The resulting table should show the artist name and the album titles.
+SELECT art.Name AS Artist, alb.Title AS AlbumTitle
+FROM chinook.albums AS alb
+LEFT JOIN chinook.artists AS art
+ON alb.ArtistId = art.ArtistId
+WHERE art.Name = "Guns N' Roses";
+
+#4. Show employees who have a hire date in 2002.
+SELECT *
+FROM chinook.employees
+WHERE HireDate BETWEEN '2002-01-01' AND '2002-12-31';
+
+#5. Find a unique/distinct list of countries from the customers table.
+SELECT DISTINCT Country
+FROM chinook.customers;
+
+#6.  Provide a query that shows all the tracks, and include the album name, media type, and genre.
+SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
+FROM chinook.tracks t
+JOIN chinook.Albums a 
+on a.AlbumId = t.AlbumId
+JOIN chinook.Media_Types m
+on m.MediaTypeId = t.MediaTypeId
+JOIN chinook.Genres g
+on g.GenreId = t.GenreId;
+
+#7. Show the invoice total, invoice date, customer name, and sales agent for all invoices and customers.
+SELECT cust.FirstName AS 'Customer First Name', cust.LastName AS 'Customer Last Name', emp.FirstName AS 'Sales Agent First Name', 
+emp.LastName AS 'Sales Agent Last Name', inv.InvoiceDate AS 'Invoice Date', inv.Total AS 'Invoice Total'
+FROM chinook.employees emp 
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId;
+
+#8. What are the total sales for 2010?
+SELECT SUM(Total)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2010-01-01' AND '2010-12-31';
+
+#9. Find all tracks that have a media type of “Protected AAC audio file.”
+SELECT T.Name AS 'Track Name', MT.Name AS 'Media Type'
+FROM chinook.tracks T
+JOIN chinook.media_types MT
+ON T.MediaTypeId = MT.MediaTypeId
+WHERE MT.Name = "Protected AAC audio file";
+
+#10. Show the total sales made by each sales agent.
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) AS 'Total Sales' 
+FROM chinook.Employees emp
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName;
